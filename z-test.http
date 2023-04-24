@@ -1,0 +1,8 @@
+###
+POST http://localhost:30501/transcode HTTP/1.1
+content-type: application/json
+
+{
+    "missionId": "sample",
+    "sku": "SKU001"
+}

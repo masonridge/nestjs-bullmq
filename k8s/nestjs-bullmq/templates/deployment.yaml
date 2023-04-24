@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nestjs-bmq
+  name: nestjs-bmq
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nestjs-bmq
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nestjs-bmq
+    spec:
+      containers:
+        - image: manounni/nestjs-bmq:latest
+          env:
+            - name: REDIS_HOST
+              value: nestjs-bmq-redis-master
+            - name: REDIS_PORT
+              value: '6379'
+          name: nestjs-bmq
+          ports:
+            - containerPort: 3000
+          resources: {}
+status: {}
