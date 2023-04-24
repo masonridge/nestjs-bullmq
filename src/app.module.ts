@@ -3,8 +3,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TRANSCODE_QUEUE } from './constants';
-import { TranscodeConsumer } from './transcode.consumer';
+import { SORTENGINE_QUEUE } from './constants';
+import { SortEngineConsumer } from './sort-engine.consumer';
 
 @Module({
   imports: [
@@ -18,10 +18,10 @@ import { TranscodeConsumer } from './transcode.consumer';
       }),
       inject: [ConfigService],
     }),
-    BullModule.registerQueue({ name: TRANSCODE_QUEUE }),
+    BullModule.registerQueue({ name: SORTENGINE_QUEUE }),
     ConfigModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService, TranscodeConsumer],
+  providers: [AppService, SortEngineConsumer],
 })
 export class AppModule {}
